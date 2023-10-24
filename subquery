@@ -1,0 +1,22 @@
+-- A SQL query using a subquery to call the average spend of the top 5 cusomers in the top 10 citys of the top 10 countries
+
+SELECT ROUND(AVG(top_five.total_amount_paid),2) AS avg_top_five_spend
+FROM (SELECT A.first_name,
+  A.last_name,
+  C.city,
+  D.country,
+  E.customer_id,
+  SUM(amount) AS customer_spend
+FROM payment E
+INNER JOIN customer A ON E.customer_id = A.customer_id
+INNER JOIN address B ON A.address_id = B.address_id
+INNER JOIN city C ON B.city_id = c.city_id
+INNER JOIN country D ON C.country_id = D.country_id
+WHERE city IN ('Aurora', 'Adoni', 'Ozamis', 'Kurashiki', 'Xintai'
+  'Sivas', 'Dhule (Dhulia)', 'Jakarta', 'San Bernadino',
+   'Pingxiang')
+GROUP BY E.customer_id, first_name, last_name, city, country
+ORDER BY customer_spend DESC
+LIMIT 5
+) AS top_five
+;
