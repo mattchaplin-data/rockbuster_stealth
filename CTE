@@ -1,4 +1,4 @@
-Here is a SQL query using a CTE to call the number of total customers and the number of top customers from the top countries
+-- Here is a SQL query using a CTE to call the number of total customers and the number of top customers from the top countries
 
 
 WITH top_five_cte (first_name, last_name, city, country, customer_id, total_amount_paid)
